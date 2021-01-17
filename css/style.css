@@ -1,0 +1,877 @@
+/*
+    1- Common Styles
+    2- General Styles
+    3- Sections
+        0- Header Section
+        1- Home Section
+        2- About Section
+        3- Portfolio Section
+        4- Services Section
+        5- Prices Section
+        6- Team Section
+        7- Blog Section
+        8- Contact Section
+        9- Footer Section
+*/
+
+/* 1- Common Styles*/
+/*
+   
+   
+    
+   
+    
+    6. hover effect 2 (top to bottom)
+*/ 
+/*1. Overlay*/
+.overlay{
+    /*si on veut mêttre un élément au dessus d'un autre on utilise position */
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left:0;
+    background-color: rgba(0,0,0,0.5)
+} 
+/*2. Opacity hover*/
+.hover-opacity{
+    transition: Opacity .5s /*le temps de la transition de l'opacity 
+    et ici on specifie sur quel élément est appliquée cette transition*/
+}
+.hover-opacity:hover{
+    opacity: 0.8;
+}
+/*3. section header*/
+.section-header .section-title{
+    font-size: 28px;
+    text-transform:capitalize ;
+    font-weight: bolder;
+    margin-bottom: 10px ;
+    text-align: center;
+   
+}
+.section-header .line{
+    display: block;
+    width: 60px;
+    height: 5px;
+    background-color:var(--mainColor);
+    margin: 0 auto 75px auto ; 
+   
+}
+/* 4. section padding*/
+.pd-y{
+    padding: 120px 0;
+}
+/*5. Hover effect 1(left to right)*/
+.ltr-effect,.ttb-effect{
+    position: relative;
+}
+.ltr-effect::after,.ttb-effect::after{
+    position: absolute;
+    content: "";
+    /*Methode 1: pour faire un calque*/
+    /* height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0; */
+     /*Methode 2: pour faire un calque*/
+     top:0;
+     left:0;
+     right: 0;
+     bottom: 0; 
+     /*fin des méthodes*/
+     
+
+    /* opacity: 0; */
+    background-color: #333;
+    z-index: -1;
+}
+.ltr-effect::after{
+    width: 0;
+     transition: width 0.5s;
+}
+.ltr-effect:hover:after{/*quand je fait passer la souris sur 
+    la classe donne moi le contenu de after et donne lui un width 100%*/
+    width: 100%;
+    /* opacity: 1; */
+}
+.ttb-effect::after{ 
+    height: 0;
+    transition: height 0.5s;
+}
+
+.ttb-effect:hover:after{
+    height:  100%;
+  
+}
+/*2- General Styles*/
+:root{
+    --mainColor:#6195FF;
+    --grayColor:#999;
+    --whiteColor:#fFF;
+
+}
+ul{
+    list-style: none;
+}
+.milieu {
+    margin: 0 5%;
+}
+body{
+    font-family: 'Varela Round',sans-serif;
+}
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;/*css3 padding and border en fonction off element*/
+}
+.container {
+    width: 80%;
+    margin: auto; 
+  
+   
+   
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: montserrat,sans-serif ;
+}
+button{
+    font-family: inherit;/*herite le font du parent(body)*/
+}
+a {
+    text-decoration: none;
+}
+.about{
+    text-align: center;
+   
+}
+
+.about-content{
+    overflow: hidden;
+    width: 100%;
+    margin: auto;   
+}
+.about-content .about-item{
+    float: left;
+    width: 30%; 
+    text-align: center;
+    border: 2px solid #e8e8e8;
+    padding: 20px ;
+    height: 314px;
+   
+   
+}
+.about-content .about-item.milieu{ /*.about-item.milieu est un seul élément c'est 
+    une div qui a eux classes(about-item et milieu)*/
+    margin: 0 5%;
+}
+.about-item .icon{
+    color: var(--mainColor);
+    margin-bottom: 10px;
+}
+.about-item-title{
+     text-transform: capitalize;
+     margin-bottom: 10px;
+     transition: color 0.5s;
+     
+}
+.about-item:hover .about-item-title{
+    color:var(--whiteColor);
+}
+.about-item-desc{
+     line-height: 1.6;
+     margin-bottom: 10px;
+     color: #626060;
+}
+.about-item-link{
+    color:var(--mainColor);
+    text-transform: capitalize;
+
+}
+
+
+/* 3- Sections
+    0- Header Section */
+.header{
+  /* background: rgb(133, 128, 128); */
+  position: fixed ;/*la position fixed et absolue rendent l'émément 
+  bloc en ligne-bloc(ينكمش) le header se trouve maintenant derière la home pour 
+  le rendre sur le premier plan utiliser z-index */
+  width: 100%;/*si on supprime cette ligne il sera reduit*/
+  z-index:10;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.header .logo{
+    width: 40%;
+    float: left;
+   
+}
+.header .logo img{
+    height: 40px;
+    width: 40px;
+}
+.header .navbar{
+    
+    width: 60%;
+    list-style: none;
+    float: left;
+    text-align: right;  
+}
+.header .navbar > li{
+    display: inline-block;/*pour rendre les éléments du li dans la même ligne*/  
+}
+.header .navbar > li a{
+     color: rgb(248, 242, 242);
+    
+     display: block;
+     padding: 10px;
+     text-transform: capitalize;
+     font-size: 12px;
+
+}
+.header .navbar > li > a::after{
+    content:'';
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color:#fcff61;
+    
+    
+}
+.header .navbar > li > a.active::after {
+   width: 100%;
+}
+.header .navbar > li > a:hover:after{ /*quand je fais un hover sur le lien a je prend 
+                                    .header .navbar li a::after et je lui donne un 
+                                     width: 100%;
+                                    */
+    transition: width .5s;
+    width: 100%;
+}
+
+.dropdown{
+    position: relative;
+}
+.dropdown-menu{
+    position: absolute;
+    background-color: var(--mainColor);
+    width: 100px;
+    left: -50%;
+    top: 90%;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s; 
+}
+.dropdown:hover .dropdown-menu{
+    opacity: 1;
+    visibility: visible;
+}
+
+ .clear{
+    clear: both;
+} 
+.headerContent{
+    /*overflow: hidden;*//*autre façon de contrôler le float:si on ajoute un élément dans 
+    le headerContent ne s'affiche pas donc si on fait un dropdown sur un élément
+    le contenu de ce dropdown ne saffiche pas solution utilise 
+    la première methode(clear:both)*/
+
+}
+/* si on a une image qui contient du text il vaut mieux faire backgroundImage:L'image
+   set dans le css on ne peut pas faire click droit enregistrer l'image sous
+    
+*/
+/* Home Section */
+.home{
+
+    background: url(../images/background/background1.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;/*home a pris 100% vh(du height) si on ajoute le header on aura 
+    le scrol c'est normal:il faut donc le mettre sur la home */
+    position: relative;
+}
+.home-content{
+    width: 60%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%); 
+    text-align: center;
+}
+.home .title{
+    color: blanchedalmond;
+    font-size: 3.1rem;
+    text-transform: capitalize;
+}
+.home .home-description{
+    margin: 20px 0;
+    color: var(--whiteColor);
+    letter-spacing: 2px;/*espacements des caractères*/
+    line-height: 2;/* faites attention 2 et pas 2px espacement 
+    des lignes*/
+}
+.home .btn{
+    min-width: 160px;
+    padding: 10px 0;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    font-size: 18px;
+}
+.home .btn-learn{
+    background-color:var(--mainColor);
+    margin-left: 10px;
+    color: var(--whiteColor);
+}
+.home .btn-started{
+    background-color:var(--whiteColor);    
+}
+/* 3- Portfolio Section*/
+
+.portfolio-content{
+    overflow: hidden;
+    width: 100%;
+    margin: auto;
+}
+.portfolio-item{
+    width: 30%;
+    float: left;  
+    padding-bottom: 54px; 
+    position: relative;
+    padding: 20px;
+}
+.portfolio-item.milieu{
+    margin: 0 5%;
+}
+.portfolio-item img {
+    width: 100%;
+   
+}
+.portfolio-item .layer-content{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:  100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0; 
+    visibility: hidden;
+    transition: opacity 0.5s; 
+}
+.portfolio-item:hover .layer-content {
+    opacity: 1;
+    visibility: visible;
+}
+.layer-content .layer-info{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+    text-align: center;
+}
+.layer-content .category{
+   margin-bottom: 5px;
+    font-size: 16px;
+    text-transform:uppercase ;
+    display: block;
+    color: var(--mainColor);
+    position: relative;
+    top: 10px;
+    transition: top 0.5s,opacity 0.5s;
+    transition-delay: .2s;
+    opacity: 0;
+    visibility: hidden;
+}
+.layer-content .title{
+    color: var(--whiteColor);
+    font-size: 16px;
+    font-weight: 900;
+    position: relative;
+    top: 10px; 
+    transition: top 0.5s;
+     transition: top 0.5s,opacity 0.5s;
+    opacity: 0;
+    visibility: hidden;
+    
+}
+.layer-content a {
+     color: #e8e8e8;
+     position: relative;
+     top: 10px;
+     transition: top 0.5s;
+      transition: top 0.5s,opacity 0.5s;
+     opacity: 0;
+     visibility: hidden;
+}
+.layer-content a i{
+    display: inline-block;
+    background-color: var(--mainColor);
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+.portfolio-item:hover .layer-content .title,
+.portfolio-item:hover .layer-content .category,
+.portfolio-item:hover .layer-content a {
+    top:0 ;
+    opacity: 1;
+    visibility: visible;
+}
+/*offer-section */
+.offer-content{
+    overflow: hidden;
+   
+}
+.offer-item{
+   
+    width: 30%;
+    float: left;
+    margin-bottom: 40px;
+    border: 1px solid #e8e8e8;
+    padding: 30px 15px 30px 65px;
+    position: relative;
+}
+
+.offer-item .icon {
+    position: absolute;
+    top :35px;
+    left: 15px;
+    color: var(--mainColor);
+}
+.offer-item-title{
+    text-transform: capitalize;
+    margin-bottom: 15px;
+    transition: color 2s;
+   
+}
+.offer-item-description{
+    line-height:1.6;
+    text-transform: capitalize;
+    color: var(--grayColor);
+    margin-bottom: 15px;
+} 
+.offer-item:hover .offer-item-title{
+    color: var(--whiteColor);
+}
+/*services-Section*/
+
+.services-content{
+    overflow: hidden;
+   
+}
+.services-item{
+    width: 50%;
+    float: left;
+   
+  
+}
+.services-item .section-title {
+    text-align: left;
+}
+.services-item .section-header .line{
+    margin: 0 0 20px 2px;
+}
+.services-item-desc{
+    padding-right: 20px;
+    color:var(--grayColor);
+    line-height: 1.4;
+    font-size: 17px;
+    margin-bottom: 20px;
+} 
+.services-list{
+  
+    list-style: none;
+}
+.services-list li{
+    margin-bottom: 5px;
+    color:var(--grayColor);
+}
+.services-list li i{
+    border: 1px solid #6159FF;
+    color: #6159ff;
+    padding: 10px 7px;
+    border-radius: 50%;
+}
+.services-item-img img{
+    width: 100%;
+}
+.services-bollets{
+    list-style: none;
+    text-align: center;
+}
+.services-bollets li{
+ width: 10px;
+ height: 10px;
+ display: inline-block;
+ background-color:var(--grayColor);
+ margin: 5px 10px;
+ border-radius: 50%;
+}
+.services-bollets li.active{
+    background-color: var(--mainColor);
+}
+.services-bollets li:hover {
+    background-color:var(--mainColor);
+}
+/*numbers section*/
+.numbers{
+   
+    position: relative;
+    background-image:url('/images/background/background2.webp') ;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 300px;
+    
+}
+.numbers-items{
+     overflow: hidden;
+     padding: 100px 0;
+}
+.numbers-item{ 
+    width:25%;
+    float: left;
+    text-align: center;
+
+}
+.numbers-item .icon{
+    color:var(--mainColor);
+    margin-bottom: 15px;
+}
+.numbers-item-number{
+    color: var(--whiteColor);
+    font-weight: bold;
+    font-size: 30px;
+   
+}
+.numbers-item-text{
+    color: var(--whiteColor);
+}
+/*pricing section*/
+.pricing-content{
+    overflow: hidden;
+}
+.pricing-item{
+    float: left;
+    width: 30%;
+    border: 1px solid #e8e8e8;
+    text-align: center;
+    padding: 40px 0;
+}
+.pricing-title{
+    color: var(--grayColor);
+    margin-bottom: 20px ;
+    text-transform: uppercase;
+    transition: color 0.5s;
+     
+}
+.pricing-price-month{
+   
+    height: 130px; 
+    padding: 25px 0;/*on donne un padding (aulieu de height) pour 
+    essayer de centrer le text dans la div*/
+    width: 130Px;
+    margin:  20px auto;
+    border: 2px solid var(--mainColor);
+    border-radius: 50%;
+    transition: color 0.5s;
+}
+.pricing-price{
+    font-size: 50px;
+    
+}
+.pricing-month{
+    text-transform: capitalize;
+    font-size: 17px;
+    font-weight: bold;
+}
+.pricing-config {
+    list-style: none;
+}
+.pricing-config li{
+    color: var(--grayColor); 
+    line-height: 1.53;
+}
+.pricing-purchase{
+    background: none;
+    border: 0;
+    color: #7ba7FF;
+    display: block;
+    margin: 10px auto 0 auto;
+    border:2px solid #7ba7FF;
+    width: 140px;
+    padding: 15px;
+}
+.pricing-item:hover .pricing-price-month{
+    color: var(--whiteColor);
+}
+.pricing-item:hover .pricing-title{
+    color: #6159FF;
+}
+/*testimonail*/
+.testimonail{
+    position: relative;
+    background-image: url(/images/background/background3.webp);
+    height: 400px;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.testimonail-content{
+    overflow: hidden;
+    padding: 120px 0;
+    width: 80%;
+    margin:auto;
+}
+.testimonail-item{
+    float: left;
+    width: 50%;   
+}
+.testimonail-cv{
+    position: relative ;
+    padding:10px 2px 40px 100px ;
+}
+.testimonail-cv h3{
+    color:var(--whiteColor);
+    margin-bottom: 10px;
+}
+.testimonail-cv .job{
+    color: #6159ff;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+.testimonail-item p{
+    color: var(--whiteColor);
+    font-size: 17px;
+    line-height: 1.5;
+}
+.testimonail-cv img{
+    position: absolute;
+   
+    border-radius: 50%;
+    top:10px;
+    left: 10px;
+}
+/*team section*/
+.team-content{
+    overflow: hidden;
+}
+.team-item{
+    float: left;
+    width: 30%;
+    background-color:#e8e8e8;
+    padding: 20px 15px;
+    text-align: center;
+}
+.team-item .team-img{ /*si on une image grande on doit la mêttre dans une div
+    et on donne un with à cette div exemple  width: 90%; et on la centre  margin: auto
+     puis on prend l'image et on la donne un width de 100% de son parent*/
+    width: 90%; 
+    margin: auto;
+    position: relative;
+}
+.team-item .team-img img{
+    width: 100%;
+    margin: auto;  
+}
+.team-info .title{
+    color: #222;
+    margin: 10px 0px;
+}
+.team-info .job{
+    color: var(--grayColor);
+    text-transform: uppercase;
+    font-size: 14px;
+}
+.team-img-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, 0.5);
+    opacity:0;  
+    visibility: hidden;  
+    transition: opacity 0.5s visibility 0.5s;  
+}
+.team-img-overlay .rs{
+    position: absolute;
+    background-color: sienna; 
+    top: O;
+    right: 10px;  
+    
+}
+.team-img-overlay .rs i{
+    display: block;
+    color: var(--whiteColor);
+    padding: 10px 10px;
+    background-color: royalblue;
+}
+.team-item:hover .team-img-overlay{
+    opacity: 1;
+    visibility: visible;
+}
+.team-item.ttb-effect{
+    z-index: 1;
+}
+.team-item:hover .team-info .title{
+    color: var(--whiteColor);
+}
+.team-item:hover .team-info .job{
+    color: var(--mainColor);
+}
+/*blog section*/
+
+.blog-content{
+    overflow: hidden;
+}
+.blog-item{
+    float: left;
+    width: 30%;
+    background-color: var(--whiteColor);
+}
+
+.blog-img img{
+    width: 100%;
+}
+.blog-list{
+    list-style: none;  
+    padding: 15px 0px 20px 15px;
+}
+.blog-list li {
+     display: inline-block;
+     font-size: 12px;
+     margin-right: 10px;    
+}
+.blog-list li i {
+    color: var(--mainColor);
+}
+.blog-title{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.blog-item p{
+    color: var(--grayColor);
+    margin-bottom: 10px;
+}
+.blog-link{
+    border: 0;
+    cursor: pointer;
+    color: var(--mainColor);
+}
+/*form section*/
+.form-content{
+    overflow: hidden;
+    text-align: center;
+}
+.form-item{
+    width: 30%;
+    float: left;
+}
+.form-item i{
+    color:var(--mainColor);
+}
+.form-item .title{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+.form-item .text{
+    color:var(--grayColor);
+}
+.form-information{
+    margin-top: 20px; 
+    padding-left:70px ;
+   
+    text-align: center;
+}
+  .form-information input{
+    background-color: #F8f8f8; 
+    width: 350px;
+    height: 40px;
+    margin-bottom: 10px;
+    border: 0;
+    padding-left: 5px;
+}  
+ .form-information .nameEmail{
+    margin: auto;
+}
+.form-information .form-information-input{
+    width: 89%
+   
+}
+textarea{
+    width: 89%;
+    height: 70px;
+    background-color: #F8f8f8;
+    border: 0;
+    padding-left: 5px; 
+}
+input[type=text]:focus{
+    border: 4px solid var(--mainColor);
+}
+textarea:focus{
+    border: 4px solid var(--mainColor);
+}
+.form-information-button{
+    background-color: var(--mainColor);
+    width: 150px;
+    height: 40px;
+    border:0;
+    border-radius: 2px;
+    color:var(--whiteColor);
+   font-size: 14px;
+
+    
+}
+.footer{
+    background-color: #626060;
+    text-align: center;
+    padding: 60px 0;
+}
+.footer-rs{
+    list-style: none;
+    margin: 20px 0;
+}
+.footer-rs li  {
+    display: inline-block;
+}
+.footer-rs li a{
+    display: block;
+    background-color: #fcff61;
+    width: 40px;
+    height: 40px;
+    background-color: #7ba7FF;
+    color: var(--whiteColor);
+    margin: 0 5px;
+    border-radius: 50%;
+}
+.footer-rs li a i{
+    line-height: 40px;
+}
+.monopacity{
+    transition: opacity O.5s;
+}
+
+.monopacity:hover{
+    opacity: 0.8;
+}
+.footer .copyr{
+    color: var(--grayColor);
+    font-size: 17px;
+    text-transform: capitalize;
+}
+
+
+
+
+
+
+
+
+
+
+
